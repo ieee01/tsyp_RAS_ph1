@@ -2,7 +2,6 @@
 
 **Spatial memory for emergency robots**
 
-IEEE RAS × IEEE AESS · TSYP14 Technical Challenge · Phase 1 · Mines & tunnels
 
 > If the Writer is lost, the map is not.
 
@@ -16,10 +15,6 @@ The robots write their results back into the beacons.
 
 ## Review the submission
 
-| Start with | What you will find |
-|---|---|
-| [Technical report](docs/report/report.pdf) | Six pages: solution, design, evidence, limits and physical implementation plan |
-| [Presentation](docs/presentation/README.md) | An offline Reveal.js deck with speaker notes for a five-minute pitch |
 | [Installation and demo instructions](instructions.md) | Ubuntu setup, build, launch, mission controls and troubleshooting |
 | [Documentation index](docs/README.md) | Requirement mapping and detailed technical documents |
 | [Recorded evidence](docs/results/README.md) | Scenario logs, gateway snapshots and the limits of each recording |
@@ -113,7 +108,6 @@ path; it does not validate physical navigation.
 | Challenge requirement | Implementation | Documentation |
 |---|---|---|
 | Writer autonomy in a GPS-denied environment | LiDAR, SLAM Toolbox, frontier exploration, Nav2, stuck detection and battery-aware return | [Architecture](docs/architecture.md) |
-| Detect at least two event types | Victim, gas, fire and blocked-path sensor zones | [Report, page 2](docs/report/report.pdf#page=2) |
 | Beacon placement and drop mechanism | Event standoffs, entrance, junction, relay and spacing policies; physical dispenser planned | [Beacon design](docs/beacon_protocol.md#2-deciding-what-to-record-and-where) |
 | Compact messages, RF broadcast and aging | 33-byte CRC-protected frame, wall-aware mesh and per-event TTL | [Protocol](docs/beacon_protocol.md) |
 | Robot coordinates → real-world GPS | Map → gateway-relative ENU → WGS84, with compass bearings | [Coordinate frames](docs/coordinate_frames.md) |

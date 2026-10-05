@@ -6,14 +6,12 @@ use by the next robot.
 
 ## Suggested reading
 
-1. Read the [six-page technical report](report/report.pdf) for the complete argument.
-2. Follow [architecture](architecture.md), [beacon design](beacon_protocol.md),
+1. Follow [architecture](architecture.md), [beacon design](beacon_protocol.md),
    [coordinate frames](coordinate_frames.md) and [data flow](data_flow.md) for implementation detail.
-3. Inspect [recorded evidence](results/README.md) and [failure analysis](failure_analysis.md)
+2. Inspect [recorded evidence](results/README.md) and [failure analysis](failure_analysis.md)
    to understand what has been demonstrated and what remains uncertain.
-4. Use the [jury instructions](../instructions.md) to reproduce the simulation.
-5. Open the [presentation](presentation/README.md) for the five-minute visual narrative.
-6. Read the [physical implementation plan](implementation_plan.md) for the final phase.
+3. Use the [jury instructions](../instructions.md) to reproduce the simulation.
+4. Read the [physical implementation plan](implementation_plan.md) for the final phase.
 
 ## Reading the visuals
 

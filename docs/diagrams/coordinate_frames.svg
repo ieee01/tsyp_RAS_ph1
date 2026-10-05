@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="325" viewBox="0 0 1200 325" role="img" aria-labelledby="title desc"><title id="title">Map coordinates to WGS84</title><desc id="desc">Subtract the gateway map position, rotate by ENU heading measured counter-clockwise from East, and apply local tangent-plane conversion. The gateway alone owns the GPS anchor.</desc>
+<rect x="0" y="0" width="1200" height="325" rx="0" fill="#ffffff" stroke="none"/>
+<text x="32" y="31" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">06 / FRAME TRANSLATION</text>
+<text x="32" y="67" font-family="DejaVu Sans, Arial, sans-serif" font-size="30" font-weight="700" text-anchor="start" fill="#14293d">A private map becomes a real-world location.</text>
+<text x="32" y="96" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">The gateway owns the GPS anchor and map heading; underground robots do not need GPS.</text>
+<rect x="28" y="135" width="270" height="115" rx="12" fill="#ffffff" stroke="#dce4ec"/>
+<rect x="28" y="135" width="5" height="115" rx="2" fill="#2563eb" stroke="none"/>
+<text x="48" y="164" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#2563eb">01</text>
+<text x="48" y="197" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#14293d">Map position</text>
+<text x="48" y="229" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">x / y in Writer map frame</text>
+<line x1="298" y1="193" x2="318" y2="193" stroke="#168575" stroke-width="2"/>
+<polygon points="318,193 309.8959760788259,196.91468980700108 309.8959760788259,189.08531019299892" fill="#168575"/>
+<rect x="320" y="135" width="270" height="115" rx="12" fill="#ffffff" stroke="#dce4ec"/>
+<rect x="320" y="135" width="5" height="115" rx="2" fill="#168575" stroke="none"/>
+<text x="340" y="164" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">02</text>
+<text x="340" y="197" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#14293d">Relative position</text>
+<text x="340" y="229" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Subtract gateway (−1.5, 0)</text>
+<line x1="590" y1="193" x2="610" y2="193" stroke="#168575" stroke-width="2"/>
+<polygon points="610,193 601.8959760788259,196.91468980700108 601.8959760788259,189.08531019299892" fill="#168575"/>
+<rect x="612" y="135" width="270" height="115" rx="12" fill="#ffffff" stroke="#dce4ec"/>
+<rect x="612" y="135" width="5" height="115" rx="2" fill="#168575" stroke="none"/>
+<text x="632" y="164" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">03</text>
+<text x="632" y="197" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#14293d">East / North</text>
+<text x="632" y="229" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Rotate 18° CCW from East</text>
+<line x1="882" y1="193" x2="902" y2="193" stroke="#168575" stroke-width="2"/>
+<polygon points="902,193 893.8959760788259,196.91468980700108 893.8959760788259,189.08531019299892" fill="#168575"/>
+<rect x="904" y="135" width="270" height="115" rx="12" fill="#ffffff" stroke="#dce4ec"/>
+<rect x="904" y="135" width="5" height="115" rx="2" fill="#168575" stroke="none"/>
+<text x="924" y="164" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">04</text>
+<text x="924" y="197" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#14293d">WGS84</text>
+<text x="924" y="229" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Latitude / longitude</text>
+<text x="32" y="294" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#607286">Example: victim (6.00, −2.20) m → ENU (7.81, 0.23) m → 36.8065020 N, 10.1815877 E</text>
+</svg>

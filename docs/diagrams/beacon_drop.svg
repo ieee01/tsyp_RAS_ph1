@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="350" viewBox="0 0 1200 350" role="img" aria-labelledby="title desc"><title id="title">Beacon deposition and hardware plan</title><desc id="desc">Phase 1 creates, writes and advertises beacon memories at the Writer pose. The physical stop, servo release, reed-switch wake and acknowledgement retry mechanism are Phase 2 work.</desc>
+<rect x="0" y="0" width="1200" height="350" rx="0" fill="#ffffff" stroke="none"/>
+<text x="32" y="31" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">04 / BEACON DEPOSITION</text>
+<text x="32" y="67" font-family="DejaVu Sans, Arial, sans-serif" font-size="30" font-weight="700" text-anchor="start" fill="#14293d">Leave memory at a place already reached.</text>
+<text x="32" y="96" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">The beacon stays at a safe standoff. Its bearing and range locate the event.</text>
+<rect x="28" y="133" width="178" height="145" rx="10" fill="#f3f6fa" stroke="none"/>
+<text x="43" y="161" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#2563eb">01 / PHASE 1</text>
+<text x="43" y="202" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#14293d">Decide</text>
+<text x="43" y="238" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Placement policy</text>
+<line x1="206" y1="201" x2="221" y2="201" stroke="#dce4ec" stroke-width="2"/>
+<polygon points="221,201 212.8959760788259,204.91468980700108 212.8959760788259,197.08531019299892" fill="#dce4ec"/>
+<rect x="221" y="133" width="178" height="145" rx="10" fill="#f3f6fa" stroke="none"/>
+<text x="236" y="161" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#607286">02 / PHASE 2</text>
+<text x="236" y="202" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#14293d">Stop</text>
+<text x="236" y="238" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Hold the drop pose</text>
+<line x1="399" y1="201" x2="414" y2="201" stroke="#dce4ec" stroke-width="2"/>
+<polygon points="414,201 405.8959760788259,204.91468980700108 405.8959760788259,197.08531019299892" fill="#dce4ec"/>
+<rect x="414" y="133" width="178" height="145" rx="10" fill="#f3f6fa" stroke="none"/>
+<text x="429" y="161" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#607286">03 / PHASE 2</text>
+<text x="429" y="202" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#14293d">Release</text>
+<text x="429" y="238" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Servo + rear chute</text>
+<line x1="592" y1="201" x2="607" y2="201" stroke="#dce4ec" stroke-width="2"/>
+<polygon points="607,201 598.8959760788259,204.91468980700108 598.8959760788259,197.08531019299892" fill="#dce4ec"/>
+<rect x="607" y="133" width="178" height="145" rx="10" fill="#f3f6fa" stroke="none"/>
+<text x="622" y="161" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#607286">04 / PHASE 2</text>
+<text x="622" y="202" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#14293d">Wake</text>
+<text x="622" y="238" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Reed switch powers on</text>
+<line x1="785" y1="201" x2="800" y2="201" stroke="#dce4ec" stroke-width="2"/>
+<polygon points="800,201 791.8959760788259,204.91468980700108 791.8959760788259,197.08531019299892" fill="#dce4ec"/>
+<rect x="800" y="133" width="178" height="145" rx="10" fill="#f3f6fa" stroke="none"/>
+<text x="815" y="161" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">05 / PHASE 1</text>
+<text x="815" y="202" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#14293d">Write</text>
+<text x="815" y="238" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Store + advertise frame</text>
+<line x1="978" y1="201" x2="993" y2="201" stroke="#dce4ec" stroke-width="2"/>
+<polygon points="993,201 984.8959760788259,204.91468980700108 984.8959760788259,197.08531019299892" fill="#dce4ec"/>
+<rect x="993" y="133" width="178" height="145" rx="10" fill="#f3f6fa" stroke="none"/>
+<text x="1008" y="161" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#607286">06 / PHASE 2</text>
+<text x="1008" y="202" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#14293d">Verify</text>
+<text x="1008" y="238" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Physical ACK / retry</text>
+<text x="32" y="320" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">30-beacon capacity · 4 reserved for events · event / entrance / relay / junction / breadcrumb policy</text>
+</svg>

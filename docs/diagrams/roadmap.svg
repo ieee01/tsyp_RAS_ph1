@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-labelledby="title desc"><title id="title">Physical prototype implementation roadmap</title><desc id="desc">Eight-week plan to 1 December 2026, progressing from firmware and measured radios to robot bases, dispenser, autonomy, gateway integration, failure testing and delivery. Planned work, not completed hardware.</desc>
+<rect x="0" y="0" width="1200" height="390" rx="0" fill="#ffffff" stroke="none"/>
+<text x="32" y="31" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">09 / PHASE 2 PLAN</text>
+<text x="32" y="67" font-family="DejaVu Sans, Arial, sans-serif" font-size="30" font-weight="700" text-anchor="start" fill="#14293d">Replace simulated inputs with physical systems.</text>
+<text x="32" y="96" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Planned milestones · two required robot bases · final deadline 1 December 2026</text>
+<circle cx="39" cy="146" r="8" fill="#168575" stroke="#168575" stroke-width="2"/>
+<text x="55" y="151" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">06–19 OCT</text>
+<text x="30" y="184" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#14293d">Firmware + RF</text>
+<text x="30" y="211" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#607286">Frames / measured links</text>
+<circle cx="329" cy="146" r="8" fill="#168575" stroke="#168575" stroke-width="2"/>
+<text x="345" y="151" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">20–26 OCT</text>
+<text x="320" y="184" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#14293d">Robot bases</text>
+<text x="320" y="211" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#607286">Odometry / LiDAR / SLAM</text>
+<circle cx="619" cy="146" r="8" fill="#168575" stroke="#168575" stroke-width="2"/>
+<text x="635" y="151" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">27 OCT–02 NOV</text>
+<text x="610" y="184" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#14293d">Dispenser + sensors</text>
+<text x="610" y="211" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#607286">20 drops without a jam</text>
+<circle cx="909" cy="146" r="8" fill="#168575" stroke="#168575" stroke-width="2"/>
+<text x="925" y="151" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">03–09 NOV</text>
+<text x="900" y="184" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#14293d">Writer autonomy</text>
+<text x="900" y="211" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#607286">Mock-tunnel exploration</text>
+<circle cx="39" cy="261" r="8" fill="#168575" stroke="#168575" stroke-width="2"/>
+<text x="55" y="266" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">10–16 NOV</text>
+<text x="30" y="299" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#14293d">Gateway + Executor</text>
+<text x="30" y="326" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#607286">Brief over real radio</text>
+<circle cx="329" cy="261" r="8" fill="#168575" stroke="#168575" stroke-width="2"/>
+<text x="345" y="266" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">17–23 NOV</text>
+<text x="320" y="299" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#14293d">Failure trials</text>
+<text x="320" y="326" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#607286">Loss / relay / outage</text>
+<circle cx="619" cy="261" r="8" fill="#168575" stroke="#168575" stroke-width="2"/>
+<text x="635" y="266" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">24 NOV–01 DEC</text>
+<text x="610" y="299" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#14293d">Final delivery</text>
+<text x="610" y="326" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#607286">Manual / demo / pitch</text>
+</svg>

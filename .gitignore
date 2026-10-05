@@ -1,0 +1,22 @@
+build/
+install/
+log/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+runtime/*
+!runtime/.gitkeep
+.DS_Store
+# Local media production tools and recordings
+/tools/video/
+*.mp4
+
+# Local documentation generators and working notes
+/docs/report/*.py
+/docs/demo_navigation.md
+
+# Superseded raster diagrams and obsolete launch helper
+/docs/diagrams/*.png
+!/docs/diagrams/beacon_frame.png
+/scripts/run_navigation.sh

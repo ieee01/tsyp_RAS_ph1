@@ -1,0 +1,5 @@
+living_map_interfaces/DetectedEvent event
+---
+bool success
+uint16 beacon_id
+string message

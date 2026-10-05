@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="375" viewBox="0 0 1200 375" role="img" aria-labelledby="title desc"><title id="title">Three recorded objective completion times</title><desc id="desc">Single autonomous simulation runs on 4 October 2026: destroyed Writer 219 seconds, stuck Writer 180 seconds, returned Writer 317 seconds. All three event beacons were resolved. Times are watcher elapsed seconds to objective completion, not return completion or statistical averages.</desc>
+<rect x="0" y="0" width="1200" height="375" rx="0" fill="#ffffff" stroke="none"/>
+<text x="32" y="31" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">08 / SIMULATION EVIDENCE</text>
+<text x="32" y="67" font-family="DejaVu Sans, Arial, sans-serif" font-size="30" font-weight="700" text-anchor="start" fill="#14293d">Three handovers. The objectives continued.</text>
+<text x="32" y="96" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">4 October 2026 · one recorded run per scenario · elapsed to objective completion</text>
+<text x="32" y="172" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#14293d">Writer destroyed</text>
+<rect x="247" y="147" width="680" height="37" rx="5" fill="#f3f6fa" stroke="none"/>
+<rect x="247" y="147" width="425.48571428571427" height="37" rx="5" fill="#2563eb" stroke="none"/>
+<text x="684.4857142857143" y="172" font-family="DejaVu Sans, Arial, sans-serif" font-size="19" font-weight="700" text-anchor="start" fill="#2563eb">219 s</text>
+<text x="1006" y="172" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#168575">3 / 3 resolved</text>
+<text x="32" y="233" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#14293d">Writer stuck</text>
+<rect x="247" y="208" width="680" height="37" rx="5" fill="#f3f6fa" stroke="none"/>
+<rect x="247" y="208" width="349.7142857142857" height="37" rx="5" fill="#168575" stroke="none"/>
+<text x="608.7142857142858" y="233" font-family="DejaVu Sans, Arial, sans-serif" font-size="19" font-weight="700" text-anchor="start" fill="#168575">180 s</text>
+<text x="1006" y="233" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#168575">3 / 3 resolved</text>
+<text x="32" y="294" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#14293d">Writer returns</text>
+<rect x="247" y="269" width="680" height="37" rx="5" fill="#f3f6fa" stroke="none"/>
+<rect x="247" y="269" width="615.8857142857142" height="37" rx="5" fill="#dc6a32" stroke="none"/>
+<text x="874.8857142857142" y="294" font-family="DejaVu Sans, Arial, sans-serif" font-size="19" font-weight="700" text-anchor="start" fill="#dc6a32">317 s</text>
+<text x="1006" y="294" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="700" text-anchor="start" fill="#168575">3 / 3 resolved</text>
+<text x="32" y="356" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#607286">Fire + two victims · return journeys excluded from these timings · logs in docs/results/</text>
+</svg>

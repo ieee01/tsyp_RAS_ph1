@@ -1,0 +1,15 @@
+# Event coordinates are Writer-odometry coordinates. The event node transforms
+# each configured point from writer/odom into the SLAM map frame at detection.
+# Spacious demo layout, including the saved eastern victim and raised V02.
+# The automatic run waits for both victims, both gases and fire before ending the sortie.
+events:
+  # V01 sits in the widened eastern room, south of the blocked path.
+  - {id: V01, type: VICTIM, x: 18.24, y: -0.36, detection_radius: 2.0, severity: 3, confidence: 0.96}
+  # V02 is more urgent (severity 4): the rescue robot assists it first.
+  - {id: V02, type: VICTIM, x: 9.5, y: -0.2, detection_radius: 2.0, severity: 4, confidence: 0.9}
+  - {id: H01, type: GAS_HAZARD, x: 14.5, y: 3.1, detection_radius: 3.0, severity: 4, confidence: 0.94}
+  # H02 sits in the upper left room, clear of the main southern passage.
+  - {id: H02, type: GAS_HAZARD, x: 6.5, y: 3.2, detection_radius: 3.0, severity: 4, confidence: 0.94}
+  # F01 sits in the southern area, reached from a safe standoff in the widened passage.
+  - {id: F01, type: FIRE, x: 12.5, y: -3.9, detection_radius: 2.5, severity: 5, confidence: 0.92}
+  - {id: P01, type: BLOCKED_PATH, x: 18.5, y: 1.0, detection_radius: 1.4, severity: 2, confidence: 0.98}

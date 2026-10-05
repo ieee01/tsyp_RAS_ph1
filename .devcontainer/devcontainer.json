@@ -1,0 +1,8 @@
+{
+  "name": "LivingMap ROS 2 Jazzy",
+  "build": {"dockerfile": "Dockerfile"},
+  "runArgs": ["--network=host"],
+  "containerEnv": {"DISPLAY": "${localEnv:DISPLAY}"},
+  "postCreateCommand": "python3 -m pip install --break-system-packages -r requirements-dev.txt && rosdep update && rosdep install --from-paths src --ignore-src -r -y --rosdistro jazzy || true",
+  "remoteUser": "root"
+}

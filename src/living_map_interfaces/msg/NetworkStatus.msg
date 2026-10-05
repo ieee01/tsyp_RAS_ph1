@@ -1,0 +1,6 @@
+string gateway_state
+uint32 packets_received
+uint32 packets_dropped
+uint32 known_beacons
+float32 last_rssi_dbm
+builtin_interfaces/Time updated_at

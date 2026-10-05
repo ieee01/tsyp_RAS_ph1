@@ -1,0 +1,4 @@
+bool clear_persistent_memory
+---
+bool success
+string message

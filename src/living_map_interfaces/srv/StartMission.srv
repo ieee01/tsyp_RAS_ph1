@@ -1,0 +1,4 @@
+living_map_interfaces/MissionBrief mission
+---
+bool accepted
+string message

@@ -1,0 +1,22 @@
+Before: B002 relays for 5 beacons: B005, B006, B009, B010, B011
+  B001 -> gateway  hops=1 p=1.0
+  B002 -> gateway  hops=1 p=1.0
+  B003 -> gateway  hops=1 p=1.0
+  B004 -> gateway  hops=1 p=1.0
+  B005 -> B002  hops=2 p=1.0
+  B006 -> B002  hops=2 p=1.0
+  B007 -> B003  hops=2 p=1.0
+  B008 -> B004  hops=2 p=1.0
+  B009 -> B002  hops=2 p=1.0
+  B010 -> B002  hops=2 p=1.0
+  B011 -> B002  hops=2 p=1.0
+  B012 -> B013  hops=3 p=1.0
+  B013 -> B001  hops=2 p=1.0
+Destroy: {"accepted":true,"action":"destroy_beacon"}
+After 4.1 s: dead=[2] unreachable=[]
+  B005 now -> B003 hops=2 p=1.0
+  B006 now -> B003 hops=2 p=1.0
+  B009 now -> B003 hops=2 p=1.0
+  B010 now -> B005 hops=3 p=1.0
+  B011 now -> B003 hops=2 p=1.0
+Memory of B002 kept at the gateway: freshness=FRESH destroyed=True

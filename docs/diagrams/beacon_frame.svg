@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="450" viewBox="0 0 1200 450" role="img" aria-labelledby="title desc"><title id="title">Beacon wire protocol, version 2, 33 bytes</title><desc id="desc">Byte offsets follow the implementation. Metadata 8 bytes, timestamp 4, position 4, bearing and range 4, event 3, chain 4, TTL 2, CRC32 4. CRC covers bytes zero through twenty-eight.</desc>
+<rect x="0" y="0" width="1200" height="450" rx="0" fill="#ffffff" stroke="none"/>
+<text x="32" y="31" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">03 / BEACON MESSAGE</text>
+<text x="32" y="67" font-family="DejaVu Sans, Arial, sans-serif" font-size="30" font-weight="700" text-anchor="start" fill="#14293d">33 bytes that answer three questions.</text>
+<text x="32" y="96" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Version 2 · network byte order · CRC32 over the first 29 bytes</text>
+<rect x="30" y="133" width="166" height="150" rx="8" fill="#f3f6fa" stroke="none"/>
+<rect x="30" y="133" width="166" height="6" rx="3" fill="#14293d" stroke="none"/>
+<text x="42" y="166" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#14293d">IDENTITY</text>
+<text x="42" y="204" font-family="DejaVu Sans, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#14293d">8 B</text>
+<text x="42" y="234" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Version / flags</text>
+<text x="42" y="254" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Mission / beacon / seq.</text>
+<text x="42" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#607286">00–07</text>
+<rect x="202" y="133" width="127" height="150" rx="8" fill="#f3f6fa" stroke="none"/>
+<rect x="202" y="133" width="127" height="6" rx="3" fill="#168575" stroke="none"/>
+<text x="214" y="166" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">WHEN</text>
+<text x="214" y="204" font-family="DejaVu Sans, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#168575">4 B</text>
+<text x="214" y="234" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Unix timestamp</text>
+<text x="214" y="254" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">uint32 seconds</text>
+<text x="214" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#607286">08–11</text>
+<rect x="335" y="133" width="139" height="150" rx="8" fill="#f3f6fa" stroke="none"/>
+<rect x="335" y="133" width="139" height="6" rx="3" fill="#2563eb" stroke="none"/>
+<text x="347" y="166" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#2563eb">WHERE</text>
+<text x="347" y="204" font-family="DejaVu Sans, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#2563eb">4 B</text>
+<text x="347" y="234" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Beacon x / y</text>
+<text x="347" y="254" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">int16 centimetres</text>
+<text x="347" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#607286">12–15</text>
+<rect x="480" y="133" width="139" height="150" rx="8" fill="#f3f6fa" stroke="none"/>
+<rect x="480" y="133" width="139" height="6" rx="3" fill="#2563eb" stroke="none"/>
+<text x="492" y="166" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#2563eb">WHERE</text>
+<text x="492" y="204" font-family="DejaVu Sans, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#2563eb">4 B</text>
+<text x="492" y="234" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Bearing / range</text>
+<text x="492" y="254" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">centi-deg. / cm</text>
+<text x="492" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#607286">16–19</text>
+<rect x="625" y="133" width="140" height="150" rx="8" fill="#f3f6fa" stroke="none"/>
+<rect x="625" y="133" width="140" height="6" rx="3" fill="#dc6a32" stroke="none"/>
+<text x="637" y="166" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#dc6a32">WHAT</text>
+<text x="637" y="204" font-family="DejaVu Sans, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#dc6a32">3 B</text>
+<text x="637" y="234" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Type / severity</text>
+<text x="637" y="254" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Confidence %</text>
+<text x="637" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#607286">20–22</text>
+<rect x="771" y="133" width="129" height="150" rx="8" fill="#f3f6fa" stroke="none"/>
+<rect x="771" y="133" width="129" height="6" rx="3" fill="#2563eb" stroke="none"/>
+<text x="783" y="166" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#2563eb">WHERE</text>
+<text x="783" y="204" font-family="DejaVu Sans, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#2563eb">4 B</text>
+<text x="783" y="234" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Previous / next</text>
+<text x="783" y="254" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">uint16 beacon IDs</text>
+<text x="783" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#607286">23–26</text>
+<rect x="906" y="133" width="121" height="150" rx="8" fill="#f3f6fa" stroke="none"/>
+<rect x="906" y="133" width="121" height="6" rx="3" fill="#168575" stroke="none"/>
+<text x="918" y="166" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">WHEN</text>
+<text x="918" y="204" font-family="DejaVu Sans, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#168575">2 B</text>
+<text x="918" y="234" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">Time to live</text>
+<text x="918" y="254" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">uint16 seconds</text>
+<text x="918" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#607286">27–28</text>
+<rect x="1033" y="133" width="131" height="150" rx="8" fill="#f3f6fa" stroke="none"/>
+<rect x="1033" y="133" width="131" height="6" rx="3" fill="#14293d" stroke="none"/>
+<text x="1045" y="166" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#14293d">INTEGRITY</text>
+<text x="1045" y="204" font-family="DejaVu Sans, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#14293d">4 B</text>
+<text x="1045" y="234" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">CRC32</text>
+<text x="1045" y="254" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#607286">4-byte checksum</text>
+<text x="1045" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#607286">29–32</text>
+<line x1="30" y1="320" x2="1030" y2="320" stroke="#168575" stroke-width="2"/>
+<text x="30" y="345" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">PROTECTED PAYLOAD / BYTES 00–28</text>
+<rect x="30" y="368" width="1140" height="57" rx="8" fill="#ecf7f4" stroke="none"/>
+<text x="50" y="402" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#14293d">Safe beacon position + guidance vector = event position. Previous leads out; next leads deeper in.</text>
+</svg>

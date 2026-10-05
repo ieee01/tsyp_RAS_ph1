@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LivingMap · Command Post</title>
+  <meta name="description" content="LivingMap remote command post: live spatial memory from the disconnected mine, through the Outside Network gateway.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e1a22'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%2356d4e8'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%2356d4e8' stroke-width='2' opacity='.5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/style.css?v=mesh-v2">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-victim" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z" fill="currentColor"/></symbol>
+    <symbol id="i-gas" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="currentColor"/><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2" opacity=".55"/></symbol>
+    <symbol id="i-fire" viewBox="0 0 24 24"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-3-1-6 1-9z" fill="currentColor"/></symbol>
+    <symbol id="i-beacon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M6.3 6.3a8 8 0 0 0 0 11.4M17.7 6.3a8 8 0 0 1 0 11.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M3 11 21 3l-8 18-2-7z" fill="currentColor"/></symbol>
+    <symbol id="i-restart" viewBox="0 0 24 24"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m9 16.2-3.5-3.5L4 14.2l5 5 11-11-1.5-1.4z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<header class="topbar">
+  <a class="brand" href="/" aria-label="LivingMap command post home">
+    <span class="brand-mark" aria-hidden="true"><span></span></span>
+    <span class="brand-text">LivingMap<small>Command Post · Outside Network</small></span>
+  </a>
+  <div class="status-strip" role="status" aria-live="polite">
+    <span class="pill" id="pill-gateway"><span class="led" id="connection-dot"></span><span id="connection">Connecting to gateway</span></span>
+    <span class="pill" id="pill-link"><span class="led" id="link-led"></span><span id="link-text">Link —</span></span>
+    <span class="pill mono" id="elapsed">T+0s</span>
+    <span class="pill subtle" id="mode-badge">Autonomous exploration</span>
+    <a class="pill view-switch command-only" href="/harness">Simulation harness ↗</a>
+    <a class="pill view-switch harness-only" href="/">← Command post</a>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">The Living Map · Phase 1 · Mines &amp; tunnels</p>
+      <h1>Knowledge survives the robot.</h1>
+      <p class="lede">The Writer explores and drops radio beacons that remember what, where and when. They relay each other's memories out of the mine. Whether the Writer is destroyed, stuck or comes home, the command post sends the right robots, briefed with everything through the gateway, and they update the map as they act.</p>
+    </div>
+    <ol class="stepper" aria-label="Mission progress">
+      <li id="stage-0"><span class="step-dot">1</span><span class="step-text"><b>Explore</b><small>Writer maps the mine</small></span></li>
+      <li id="stage-1"><span class="step-dot">2</span><span class="step-text"><b>Record</b><small>Victim, gas &amp; fire</small></span></li>
+      <li id="stage-2"><span class="step-dot">3</span><span class="step-text"><b>Hand over</b><small>Writer lost, stuck or home</small></span></li>
+      <li id="stage-3"><span class="step-dot">4</span><span class="step-text"><b>Inherit</b><small>Rescue robots briefed</small></span></li>
+      <li id="stage-4"><span class="step-dot">5</span><span class="step-text"><b>Act</b><small>Fire out, victim assisted</small></span></li>
+    </ol>
+    <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  </section>
+
+  <div class="layout">
+    <section class="card map-card" aria-labelledby="map-title">
+      <div class="card-head">
+        <div>
+          <p class="eyebrow">Live spatial memory · map frame <span class="read-only command-only">Read only</span></p>
+          <h2 id="map-title">Mine map</h2>
+        </div>
+        <div class="toolbar" role="group" aria-label="Map layers">
+          <button class="chip-toggle" data-layer="trails" aria-pressed="true">Trails</button>
+          <button class="chip-toggle" data-layer="mesh" aria-pressed="true">Radio mesh</button>
+          <button class="chip-toggle" data-layer="links" aria-pressed="false">Beacon chain</button>
+          <button class="chip-toggle" data-layer="zones" aria-pressed="true">Hazard zones</button>
+          <button class="chip-toggle" data-layer="walls" aria-pressed="false" id="layout-toggle">Reference walls</button>
+        </div>
+      </div>
+      <div class="placement-bar harness-only" aria-label="Place events for the next run">
+        <label class="placement-label" for="placement-type">Place events on the map</label>
+        <select id="placement-type">
+          <option value="">View live map</option>
+          <option value="V01">Victim · V01</option>
+          <option value="V02">Victim · V02</option>
+          <option value="H01">Gas · H01</option>
+          <option value="H02">Gas · H02</option>
+          <option value="F01">Fire · F01</option>
+        </select>
+        <p id="placement-status" class="footnote" role="status">Loading scenario…</p>
+      </div>
+      <div class="map-wrap">
+        <canvas id="map" aria-label="Live SLAM occupancy map with robot trails, beacon memories and hazard zones"></canvas>
+        <div id="map-empty" class="map-empty"><span class="spinner" aria-hidden="true"></span>Waiting for the Writer’s SLAM map…</div>
+        <div id="tooltip" class="tooltip" hidden></div>
+        <ul class="legend" aria-label="Map legend">
+          <li><span class="sw sw-writer"></span>Writer</li>
+          <li><span class="sw sw-executor"></span>Executor</li>
+          <li><span class="sw sw-firebot"></span>Fire robot</li>
+          <li><svg class="ico c-victim"><use href="#i-victim"/></svg>Victim</li>
+          <li><svg class="ico c-gas"><use href="#i-gas"/></svg>Gas</li>
+          <li><svg class="ico c-fire"><use href="#i-fire"/></svg>Fire</li>
+          <li><svg class="ico c-beacon"><use href="#i-beacon"/></svg>Beacon</li>
+          <li><span class="sw sw-junction"></span>Junction</li>
+          <li><span class="sw sw-relay"></span>Relay</li>
+          <li><span class="sw sw-mesh"></span>Radio hop</li>
+          <li><span class="sw sw-gateway"></span>Gateway</li>
+        </ul>
+      </div>
+      <div class="robots">
+        <article class="robot" id="robot-writer">
+          <div class="robot-head"><span class="sw sw-writer"></span><b>Writer</b><span class="robot-model">Explorer</span><span class="state" id="writer-state">WAITING</span></div>
+          <p class="robot-detail" id="writer-detail">Waiting for telemetry</p>
+          <dl class="robot-meta"><div><dt>Telemetry</dt><dd class="mono" id="writer-age">—</dd></div><div><dt>Battery</dt><dd class="mono" id="writer-battery">—</dd></div></dl>
+          <div class="bar battery-bar"><span id="writer-battery-bar"></span></div>
+        </article>
+        <article class="robot" id="robot-executor">
+          <div class="robot-head"><span class="sw sw-executor"></span><b>Executor</b><span class="robot-model">Rescue</span><span class="state" id="executor-state">WAITING</span></div>
+          <p class="robot-detail" id="executor-detail">Waiting for telemetry</p>
+          <dl class="robot-meta"><div><dt>Telemetry</dt><dd class="mono" id="executor-age">—</dd></div><div><dt>Battery</dt><dd class="mono" id="executor-battery">—</dd></div></dl>
+          <div class="bar battery-bar"><span id="executor-battery-bar"></span></div>
+        </article>
+        <article class="robot" id="robot-firebot">
+          <div class="robot-head"><span class="sw sw-firebot"></span><b>Fire robot</b><span class="robot-model">Firefighter</span><span class="state" id="firebot-state">WAITING</span></div>
+          <p class="robot-detail" id="firebot-detail">Waiting for telemetry</p>
+          <dl class="robot-meta"><div><dt>Telemetry</dt><dd class="mono" id="firebot-age">—</dd></div><div><dt>Battery</dt><dd class="mono" id="firebot-battery">—</dd></div></dl>
+          <div class="bar battery-bar"><span id="firebot-battery-bar"></span></div>
+        </article>
+      </div>
+      <section class="beacon-field" aria-labelledby="mem-title">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow">Persistent beacon field · 33-byte frames · what · where · when · CRC32</p>
+            <h2 id="mem-title">Living memories <span class="count" id="memory-count">0</span></h2>
+          </div>
+          <div class="toolbar" role="group" aria-label="Filter memories">
+            <button class="chip-toggle" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip-toggle" data-filter="events" aria-pressed="false">Events</button>
+            <button class="chip-toggle" data-filter="nav" aria-pressed="false">Navigation</button>
+          </div>
+        </div>
+        <div id="mem" class="memories"></div>
+      </section>
+    </section>
+
+    <aside class="side">
+      <section class="card control" aria-labelledby="demo-title">
+        <p class="eyebrow">Demo control · via gateway uplink</p>
+        <h2 id="demo-title">Ready when you are</h2>
+        <p class="phase-msg" id="demo-message">Connect to the gateway to start.</p>
+        <div class="readiness" aria-label="Recorded event memories">
+          <span class="ready-chip c-victim" id="victim-ready"><svg class="ico"><use href="#i-victim"/></svg><span>Victim</span></span>
+          <span class="ready-chip c-gas" id="gas-ready"><svg class="ico"><use href="#i-gas"/></svg><span>Gas</span></span>
+          <span class="ready-chip c-fire" id="fire-ready"><svg class="ico"><use href="#i-fire"/></svg><span>Fire</span></span>
+        </div>
+        <fieldset class="seg seg-3" id="outcome-seg">
+          <legend>How the Writer's sortie ends</legend>
+          <label><input type="radio" name="outcome" value="destroyed" checked><span>Destroyed<small>radio dies</small></span></label>
+          <label><input type="radio" name="outcome" value="stuck"><span>Stuck<small>keeps relaying</small></span></label>
+          <label><input type="radio" name="outcome" value="return"><span>Returns<small>best case</small></span></label>
+        </fieldset>
+        <button id="full-demo" class="btn btn-primary" data-action="full_demo"><svg class="ico"><use href="#i-play"/></svg><span>Run full demo</span></button>
+        <button id="cancel-auto" class="btn btn-ghost" data-action="cancel_auto" hidden>Stop automatic sequencing</button>
+        <div class="group">
+          <p class="group-title">Manual stages</p>
+          <div class="btn-grid">
+            <button class="btn" data-action="start"><svg class="ico"><use href="#i-play"/></svg>Explore</button>
+            <button class="btn" data-action="pause"><svg class="ico"><use href="#i-pause"/></svg>Pause Writer</button>
+            <button class="btn btn-accent" data-action="dispatch"><svg class="ico"><use href="#i-send"/></svg>Brief rescue robots</button>
+          </div>
+        </div>
+        <div class="group harness-only">
+          <p class="group-title">Fault injection · simulation harness</p>
+          <div class="btn-grid">
+            <button class="btn btn-danger" data-action="fail_writer"><svg class="ico"><use href="#i-bolt"/></svg>Destroy Writer</button>
+            <button class="btn btn-warn" data-action="stuck_writer"><svg class="ico"><use href="#i-pause"/></svg>Writer stuck</button>
+          </div>
+          <div class="fault-row">
+            <select id="beacon-target" aria-label="Beacon to destroy"><option value="">Choose a beacon…</option></select>
+            <button class="btn btn-danger" data-action="destroy_beacon"><svg class="ico"><use href="#i-bolt"/></svg>Destroy beacon</button>
+          </div>
+          <div class="btn-grid fault-link">
+            <button class="btn btn-warn" id="link-cut"><svg class="ico"><use href="#i-pause"/></svg>Cut satellite link 20 s</button>
+            <button class="btn" id="link-restore"><svg class="ico"><use href="#i-play"/></svg>Restore link</button>
+          </div>
+        </div>
+        <div id="notice" class="notice" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="card" aria-labelledby="mission-status">
+        <p class="eyebrow">Mission · the command post decides who and what, never how</p>
+        <h2 id="mission-status">Awaiting brief</h2>
+        <dl class="kv">
+          <div><dt>Who</dt><dd id="mission-robot">—</dd></div>
+          <div><dt>What</dt><dd id="mission-target">Most urgent victim memory</dd></div>
+          <div><dt>How</dt><dd>Robot's own logic</dd></div>
+          <div><dt>Inherited</dt><dd id="mission-seeded">—</dd></div>
+        </dl>
+        <p class="muted" id="mission-how">Each robot keeps every recorded hazard out of its planning map, prefers beacon links the Writer actually drove and trusts fresh memories. On arrival it acts (extinguishes the fire, assists the victim) and writes the result back into the beacon.</p>
+        <p class="footnote">Completion means reaching the victim. Pickup and return are outside the Phase 1 mission.</p>
+      </section>
+
+      <section class="card" aria-labelledby="net-title">
+        <p class="eyebrow">Outside network</p>
+        <h2 id="net-title">Link health</h2>
+        <dl class="kv">
+          <div><dt>Gateway</dt><dd id="net-gateway">—</dd></div>
+          <div><dt>Long-distance link</dt><dd id="net-link">—</dd></div>
+          <div><dt>Last RSSI</dt><dd class="mono" id="net-rssi">—</dd></div>
+        </dl>
+        <div class="meter"><div class="meter-label"><span>RF delivery probability</span><span class="mono" id="net-prob">—</span></div><div class="bar"><span id="net-prob-bar"></span></div></div>
+        <div class="stats">
+          <div><span class="mono" id="net-rx">0</span><small>frames received</small></div>
+          <div><span class="mono" id="net-drop">0</span><small>frames dropped</small></div>
+          <div><span class="mono" id="net-queue">0</span><small>queued snapshots</small></div>
+        </div>
+        <p class="group-title">Beacon radio mesh</p>
+        <div class="stats">
+          <div><span class="mono" id="mesh-alive">0</span><small>beacons on air</small></div>
+          <div><span class="mono" id="mesh-hops">—</span><small>deepest route (hops)</small></div>
+          <div><span class="mono" id="mesh-cut">0</span><small>cut off</small></div>
+        </div>
+        <dl class="kv">
+          <div><dt>Writer uplink</dt><dd class="mono" id="mesh-writer">—</dd></div>
+          <div><dt>Executor uplink</dt><dd class="mono" id="mesh-executor">—</dd></div>
+        </dl>
+        <p class="footnote" id="net">Gateway telemetry unavailable</p>
+      </section>
+
+      <section class="card harness-only" aria-labelledby="replay-title">
+        <p class="eyebrow">Next run</p>
+        <h2 id="replay-title">New demo</h2>
+        <p class="footnote">Select an event above the map, click its position on the map, then restart to apply. Use Autonomous mode to explore custom positions.</p>
+        <fieldset class="seg" id="speed-seg">
+          <legend>Robot speed</legend>
+          <label><input type="radio" name="speed" value="normal" checked><span>Normal<small>0.55 m/s · validated</small></span></label>
+          <label><input type="radio" name="speed" value="fast"><span>Fast<small>0.8 m/s</small></span></label>
+          <label><input type="radio" name="speed" value="very_fast"><span>Very fast<small>1.1 m/s</small></span></label>
+        </fieldset>
+        <fieldset class="seg" id="mode-seg">
+          <legend>Navigation</legend>
+          <label><input type="radio" name="mode" value="autonomous" checked><span>Autonomous<small>frontier exploration</small></span></label>
+          <label><input type="radio" name="mode" value="guided"><span>Guided<small>demo fallback</small></span></label>
+        </fieldset>
+        <button id="restart" class="btn btn-wide"><svg class="ico"><use href="#i-restart"/></svg>Restart simulation</button>
+        <p class="footnote">Resets robots, map and memories. The previous run is archived locally.</p>
+      </section>
+      <section class="card timeline-card" aria-labelledby="timeline-title">
+        <p class="eyebrow">Command &amp; mission evidence</p>
+        <h2 id="timeline-title">Run timeline</h2>
+        <ol id="timeline" class="timeline"></ol>
+      </section>
+    </aside>
+  </div>
+
+  <footer class="foot">
+    <span>All commands and telemetry pass through the Outside Network gateway. There is no direct link between the command post and either robot.</span>
+  </footer>
+</main>
+<script src="/static/app.js?v=mesh-v2"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.8)
+project(living_map_sim)
+find_package(ament_cmake REQUIRED)
+install(DIRECTORY worlds models rviz gui DESTINATION share/${PROJECT_NAME})
+ament_package()

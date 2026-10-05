@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc"><title id="title">LivingMap system architecture</title><desc id="desc">All inside-to-outside system traffic passes through the radio mesh and the Outside Network gateway. Mission briefs return through the gateway at the entrance.</desc>
+<rect x="0" y="0" width="1200" height="520" rx="0" fill="#ffffff" stroke="none"/>
+<text x="32" y="31" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">01 / SYSTEM ARCHITECTURE</text>
+<text x="32" y="67" font-family="DejaVu Sans, Arial, sans-serif" font-size="30" font-weight="700" text-anchor="start" fill="#14293d">The mine keeps the memory.</text>
+<text x="32" y="96" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">One communication boundary. Three robot roles. Knowledge survives the Writer.</text>
+<rect x="25" y="126" width="656" height="320" rx="15" fill="#f3f6fa" stroke="none"/>
+<rect x="704" y="126" width="244" height="320" rx="15" fill="#ecf7f4" stroke="none"/>
+<rect x="970" y="126" width="205" height="320" rx="15" fill="#f3f6fa" stroke="none"/>
+<text x="45" y="154" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#2563eb">GPS-DENIED MINE</text>
+<text x="724" y="154" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">OUTSIDE NETWORK AREA</text>
+<text x="989" y="154" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#14293d">COMMAND POST</text>
+<rect x="45" y="174" width="222" height="117" rx="12" fill="#ffffff" stroke="#dce4ec"/>
+<rect x="45" y="174" width="5" height="117" rx="2" fill="#2563eb" stroke="none"/>
+<text x="65" y="203" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#2563eb">SENSE + EXPLORE</text>
+<text x="65" y="236" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#14293d">Writer</text>
+<text x="65" y="268" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">LiDAR / SLAM / frontiers</text>
+<rect x="45" y="315" width="222" height="110" rx="12" fill="#ffffff" stroke="#dce4ec"/>
+<rect x="45" y="315" width="5" height="110" rx="2" fill="#dc6a32" stroke="none"/>
+<text x="65" y="344" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#dc6a32">ACT + UPDATE</text>
+<text x="65" y="377" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#14293d">Executors</text>
+<text x="65" y="409" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Fire response / victim aid</text>
+<rect x="354" y="209" width="299" height="167" rx="12" fill="#ffffff" stroke="#dce4ec"/>
+<rect x="354" y="209" width="5" height="167" rx="2" fill="#168575" stroke="none"/>
+<text x="374" y="238" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">PRESERVE + RELAY</text>
+<text x="374" y="271" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#14293d">Beacon mesh</text>
+<text x="374" y="303" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">33-byte event memories</text>
+<text x="374" y="328" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">CRC / guidance / timestamps</text>
+<text x="374" y="353" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Persistent store + RF relays</text>
+<rect x="724" y="184" width="204" height="222" rx="12" fill="#ffffff" stroke="#dce4ec"/>
+<rect x="724" y="184" width="5" height="222" rx="2" fill="#168575" stroke="none"/>
+<text x="744" y="213" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">RECEIVE / TRANSLATE</text>
+<text x="744" y="246" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#14293d">Gateway</text>
+<text x="744" y="278" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Validate frames</text>
+<text x="744" y="303" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Map → WGS84</text>
+<text x="744" y="328" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Retain latest state</text>
+<text x="744" y="353" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Brief at entrance</text>
+<text x="990" y="233" font-family="DejaVu Sans, Arial, sans-serif" font-size="25" font-weight="700" text-anchor="start" fill="#14293d">Live map</text>
+<text x="990" y="267" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Targets by priority</text>
+<text x="990" y="292" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Robot and link status</text>
+<text x="990" y="317" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#607286">Resolved memories</text>
+<line x1="267" y1="230" x2="354" y2="250" stroke="#2563eb" stroke-width="2"/>
+<polygon points="354,250 345.2249310046335,251.9995409789644 346.9790353844916,244.3691869265816" fill="#2563eb"/>
+<text x="275" y="209" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#2563eb">DEPOSIT</text>
+<line x1="354" y1="337" x2="267" y2="358" stroke="#dc6a32" stroke-width="2"/>
+<polygon points="267,358 273.95923256837455,352.29306719338007 275.7963223748768,359.90386782031794" fill="#dc6a32"/>
+<line x1="267" y1="382" x2="354" y2="360" stroke="#dc6a32" stroke-width="2"/>
+<polygon points="354,360 347.1029954454257,365.781983065885 345.18357029115026,358.19152904670494" fill="#dc6a32"/>
+<line x1="653" y1="267" x2="724" y2="267" stroke="#168575" stroke-width="3"/>
+<polygon points="724,267 715.8959760788259,270.9146898070011 715.8959760788259,263.0853101929989" fill="#168575"/>
+<text x="661" y="249" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">RF</text>
+<line x1="724" y1="393" x2="654" y2="393" stroke="#168575" stroke-width="2"/>
+<polygon points="654,393 662.1040239211741,389.0853101929989 662.1040239211741,396.9146898070011" fill="#168575"/>
+<polyline points="654.00,393.00 301.00,393.00 301.00,414.00 267.00,414.00" fill="none" stroke="#168575" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="417" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">BRIEF + MAP AT ENTRANCE</text>
+<line x1="928" y1="330" x2="988" y2="330" stroke="#168575" stroke-width="2"/>
+<polygon points="988,330 979.8959760788259,333.9146898070011 979.8959760788259,326.0853101929989" fill="#168575"/>
+<line x1="988" y1="360" x2="928" y2="360" stroke="#14293d" stroke-width="2"/>
+<polygon points="928,360 936.1040239211741,356.0853101929989 936.1040239211741,363.9146898070011" fill="#14293d"/>
+<text x="979" y="386" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#168575">WIRELESS LINK</text>
+<text x="980" y="409" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#607286">Latency / loss / outages</text>
+<line x1="692" y1="135" x2="692" y2="439" stroke="#168575" stroke-width="2" stroke-dasharray="5 6"/>
+<text x="32" y="483" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#168575">OUTBOUND  memories + telemetry + map</text>
+<text x="604" y="483" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#14293d">INBOUND  mission + inherited memories + map</text>
+</svg>

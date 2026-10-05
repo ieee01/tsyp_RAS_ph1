@@ -1,0 +1,16 @@
+# Radio channel of the disconnected mine (living_map_radio).
+seed: 42
+# Free-space-like delivery curve: 0.98 up to nominal range, 0 beyond max range.
+nominal_range_m: 12.0
+max_range_m: 22.0
+# Each rock wall between two radios adds this attenuation. It is applied as an
+# equivalent longer free-space distance (path-loss exponent 2), so one wall
+# shortens range by ~2.5x and two walls by ~6.3x: deep drifts need relays.
+wall_loss_db: 8.0
+# Links weaker than this are not used for routing or shown as mesh links.
+min_link_probability: 0.3
+# Link-layer retries per hop for routed robot telemetry (ARQ).
+link_retries: 3
+# Flooded beacon advertisements are relayed at most this many hops.
+max_hops: 16
+age_scale: 1.0

@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+<!-- LivingMap Executor: Clearpath Robotics Husky A200 base model from Gazebo Fuel
+     (OpenRobotics, CC0-1.0, https://app.gazebosim.org/OpenRobotics/fuel/models/Clearpath%20Robotics%20Husky%20A200).
+     Chassis, bumpers, top plate, user rail and wheels are the original meshes and
+     geometry. A 2D LiDAR is mounted above the user rail, and the skid-steer DiffDrive and
+     odometry plugins use the /executor/* bridge contract. The model origin is at
+     axle height (wheel contact 0.143 m below it). -->
+<sdf version="1.9">
+  <model name="executor">
+    <!-- Robot geometry scaled x1.5 from the original model (poses, shapes, meshes, wheels); mass kept, inertia x1.5^2. -->
+    <link name="base_link">
+      <inertial>
+        <pose>-0.12842 -0.00125993 0.357217 0 0 0</pose>
+        <mass>33.855</mass>
+        <inertia>
+          <ixx>5.02718</ixx>
+          <ixy>-0.0531945</ixy>
+          <ixz>0.619141</ixz>
+          <iyy>7.70665</iyy>
+          <iyz>0.00539154</iyz>
+          <izz>4.77922</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0.15 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.5111 0.85635 0.40125</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="base">
+        <geometry>
+          <mesh>
+            <uri>model://executor/meshes/base_link.stl</uri>
+            <scale>1.5 1.5 1.5</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>.85 .62 0 1</ambient>
+          <diffuse>1 .76 0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="top_plate">
+        <geometry>
+          <mesh>
+            <uri>model://executor/meshes/top_plate.stl</uri>
+            <scale>1.5 1.5 1.5</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>.12 .12 .12 1</ambient>
+          <diffuse>.18 .18 .18 1</diffuse>
+        </material>
+      </visual>
+      <visual name="front_bumper">
+        <pose>0.705 0 0.1365 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://executor/meshes/bumper.stl</uri>
+            <scale>1.5 1.5 1.5</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>.1 .1 .1 1</ambient>
+          <diffuse>.15 .15 .15 1</diffuse>
+        </material>
+      </visual>
+      <visual name="rear_bumper">
+        <pose>-0.705 0 0.1365 0 0 3.141</pose>
+        <geometry>
+          <mesh>
+            <uri>model://executor/meshes/bumper.stl</uri>
+            <scale>1.5 1.5 1.5</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>.1 .1 .1 1</ambient>
+          <diffuse>.15 .15 .15 1</diffuse>
+        </material>
+      </visual>
+      <visual name="user_rail">
+        <pose>0.408 0 0.3675 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://executor/meshes/user_rail.stl</uri>
+            <scale>1.5 1.5 1.5</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>.35 .35 .35 1</ambient>
+          <diffuse>.5 .5 .5 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <link name="front_left_wheel">
+      <pose>0.384 0.428212 0.0525 0 0 0</pose>
+      <inertial>
+        <mass>2.6357</mass>
+        <!-- Axle is +y, so the largest moment is iyy (the Fuel model had it on z). -->
+        <inertia>
+          <ixx>0.0555048</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.099238</iyy>
+          <iyz>0</iyz>
+          <izz>0.0555048</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0 -1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.266625</radius>
+            <length>0.17145</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <!-- Skid-steer friction from the SubT X1 (Husky) model: lower sideways
+                 grip (fdir1 = axle) lets the tyres scrub when turning. -->
+            <ode>
+              <mu>0.5</mu>
+              <mu2>1</mu2>
+              <slip1>0.00062</slip1>
+              <slip2>0</slip2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <pose>0 0 0 -3.14159 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://executor/meshes/wheel.stl</uri>
+            <scale>1.5 1.5 1.5</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>.08 .08 .08 1</ambient>
+          <diffuse>.12 .12 .12 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_left_wheel_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>front_left_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <link name="front_right_wheel">
+      <pose>0.384 -0.428212 0.0525 0 0 0</pose>
+      <inertial>
+        <mass>2.6357</mass>
+        <!-- Axle is +y, so the largest moment is iyy (the Fuel model had it on z). -->
+        <inertia>
+          <ixx>0.0555048</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.099238</iyy>
+          <iyz>0</iyz>
+          <izz>0.0555048</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0 -1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.266625</radius>
+            <length>0.17145</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <!-- Skid-steer friction from the SubT X1 (Husky) model: lower sideways
+                 grip (fdir1 = axle) lets the tyres scrub when turning. -->
+            <ode>
+              <mu>0.5</mu>
+              <mu2>1</mu2>
+              <slip1>0.00062</slip1>
+              <slip2>0</slip2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <pose>0 0 0 -3.14159 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://executor/meshes/wheel.stl</uri>
+            <scale>1.5 1.5 1.5</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>.08 .08 .08 1</ambient>
+          <diffuse>.12 .12 .12 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_right_wheel_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>front_right_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <link name="rear_left_wheel">
+      <pose>-0.384 0.428212 0.0525 0 0 0</pose>
+      <inertial>
+        <mass>2.6357</mass>
+        <!-- Axle is +y, so the largest moment is iyy (the Fuel model had it on z). -->
+        <inertia>
+          <ixx>0.0555048</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.099238</iyy>
+          <iyz>0</iyz>
+          <izz>0.0555048</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0 -1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.266625</radius>
+            <length>0.17145</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <!-- Skid-steer friction from the SubT X1 (Husky) model: lower sideways
+                 grip (fdir1 = axle) lets the tyres scrub when turning. -->
+            <ode>
+              <mu>0.5</mu>
+              <mu2>1</mu2>
+              <slip1>0.00062</slip1>
+              <slip2>0</slip2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <pose>0 0 0 -3.14159 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://executor/meshes/wheel.stl</uri>
+            <scale>1.5 1.5 1.5</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>.08 .08 .08 1</ambient>
+          <diffuse>.12 .12 .12 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <joint name="rear_left_wheel_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rear_left_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <link name="rear_right_wheel">
+      <pose>-0.384 -0.428212 0.0525 0 0 0</pose>
+      <inertial>
+        <mass>2.6357</mass>
+        <!-- Axle is +y, so the largest moment is iyy (the Fuel model had it on z). -->
+        <inertia>
+          <ixx>0.0555048</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.099238</iyy>
+          <iyz>0</iyz>
+          <izz>0.0555048</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <pose>0 0 0 -1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.266625</radius>
+            <length>0.17145</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <!-- Skid-steer friction from the SubT X1 (Husky) model: lower sideways
+                 grip (fdir1 = axle) lets the tyres scrub when turning. -->
+            <ode>
+              <mu>0.5</mu>
+              <mu2>1</mu2>
+              <slip1>0.00062</slip1>
+              <slip2>0</slip2>
+              <fdir1>0 0 1</fdir1>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <pose>0 0 0 -3.14159 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://executor/meshes/wheel.stl</uri>
+            <scale>1.5 1.5 1.5</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>.08 .08 .08 1</ambient>
+          <diffuse>.12 .12 .12 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <joint name="rear_right_wheel_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rear_right_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <link name="laser">
+      <pose>0.3 0 0.48 0 0 0</pose>
+      <inertial>
+        <mass>0.17</mass>
+        <inertia>
+          <ixx>0.000225</ixx>
+          <iyy>0.000225</iyy>
+          <izz>0.000225</izz>
+        </inertia>
+      </inertial>
+      <visual name="lidar_v">
+        <geometry>
+          <cylinder>
+            <radius>0.06</radius>
+            <length>0.105</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>.05 .05 .05 1</ambient>
+          <diffuse>.1 .1 .1 1</diffuse>
+        </material>
+      </visual>
+      <sensor name="lidar" type="gpu_lidar">
+        <topic>/executor/scan</topic>
+        <update_rate>10</update_rate>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>720</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>.08</min>
+            <max>12</max>
+            <resolution>.01</resolution>
+          </range>
+        </lidar>
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+      </sensor>
+    </link>
+    <joint name="laser_fixed" type="fixed">
+      <parent>base_link</parent>
+      <child>laser</child>
+    </joint>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>front_left_wheel_joint</left_joint>
+      <left_joint>rear_left_wheel_joint</left_joint>
+      <right_joint>front_right_wheel_joint</right_joint>
+      <right_joint>rear_right_wheel_joint</right_joint>
+      <!-- Measured in Gazebo: with these tyres the skid-steer turn rate matches the real track. -->
+      <wheel_separation>0.8564</wheel_separation>
+      <wheel_radius>0.266625</wheel_radius>
+      <max_linear_acceleration>.5</max_linear_acceleration>
+      <max_angular_acceleration>1.5</max_angular_acceleration>
+      <max_linear_velocity>1.2</max_linear_velocity>
+      <max_angular_velocity>2.0</max_angular_velocity>
+      <topic>/executor/cmd_vel</topic>
+      <odom_topic>/executor/wheel_odom</odom_topic>
+      <tf_topic>/executor/tf</tf_topic>
+      <frame_id>executor/odom</frame_id>
+      <child_frame_id>executor/base_link</child_frame_id>
+    </plugin>
+    <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+      <odom_frame>world</odom_frame>
+      <robot_base_frame>executor/base_link</robot_base_frame>
+      <dimensions>2</dimensions>
+      <odom_publish_frequency>30</odom_publish_frequency>
+      <odom_topic>/executor/world_odom</odom_topic>
+    </plugin>
+  </model>
+</sdf>

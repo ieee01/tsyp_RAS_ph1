@@ -1,0 +1,10 @@
+latitude: 36.806500
+longitude: 10.181500
+altitude: 10.0
+# heading_deg is the counter-clockwise angle, in degrees, from geographic East to the map +X axis (ENU yaw convention). It is NOT a compass bearing. To convert a compass bearing B (clockwise from North): heading_deg = 90 - B.
+heading_deg: 18.0
+# Gateway world pose is (-12.5, 0); Writer map origin is its initial world pose
+# (-11, 0), therefore the gateway is at (-1.5, 0) in map coordinates.
+map_x: -1.5
+map_y: 0.0
+frame: gateway_enu

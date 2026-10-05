@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="LivingMap: a five-minute visual presentation of spatial memory for emergency robots, with recorded simulation evidence.">
+<title>LivingMap · Spatial memory for emergency robots</title>
+<link rel="stylesheet" href="vendor/reset.css"><link rel="stylesheet" href="vendor/reveal.css"><link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+<section class="cover" aria-label="LivingMap introduction">
+ <p class="kicker">IEEE RAS × IEEE AESS / TSYP14</p>
+ <div class="cover-grid"><div><p class="wordmark">Living<span>Map</span><span class="wordmark-dot">.</span></p><h1>If the Writer is lost,<br>the map is not.</h1><p class="lede">Spatial memory for emergency robots.</p><p class="tags">MINES & TUNNELS <span>·</span> PHASE 1 SIMULATION</p></div>
+ <div class="memory-art" aria-label="Concept: a robot leaves connected memories that survive it">
+  <div class="art-label">THE ENVIRONMENT REMEMBERS</div>
+  <svg viewBox="0 0 440 400" role="img" aria-label="A Writer and an Executor connected by five memory beacons"><path d="M70 80 L190 80 L190 200 L325 200 L325 315 L95 315" fill="none" stroke="#d5e2df" stroke-width="32" stroke-linejoin="round"/><path class="packet-path" d="M70 80 L190 80 L190 200 L325 200 L325 315 L95 315" fill="none" stroke="#168575" stroke-width="3" stroke-dasharray="7 11"/><g fill="#168575" stroke="#fff" stroke-width="5"><circle cx="190" cy="80" r="12"/><circle cx="190" cy="200" r="12"/><circle cx="325" cy="200" r="12"/><circle cx="325" cy="315" r="12"/><circle cx="190" cy="315" r="12"/></g><rect x="43" y="58" width="54" height="44" rx="10" fill="#2563eb"/><rect x="69" y="293" width="54" height="44" rx="10" fill="#dc6a32"/><text x="29" y="130" fill="#2563eb" font-family="Arial,sans-serif" font-size="15">WRITER</text><text x="54" y="364" fill="#dc6a32" font-family="Arial,sans-serif" font-size="15">EXECUTOR</text></svg>
+  <p>What happened. Where to go. When it was written.</p>
+ </div></div>
+ <p class="slide-footer">LivingMap / Spatial memory for emergency robots</p>
+ <aside class="notes">20 seconds. A robot entering a GPS-denied mine may lose connectivity or fail. Our idea is to put its discoveries into small radio beacons, so useful knowledge belongs to the environment and survives the exploring robot. This is our Phase 1 simulation.</aside>
+</section>
+<section aria-label="Why preserved memory matters">
+ <p class="kicker">01 / THE CONTINUITY PROBLEM</p><h2>A robot can fail.<br>Its discoveries should survive.</h2>
+ <div class="continuity-grid">
+  <div class="memory-card writer-card"><p class="card-label">EXPLORING ROBOT</p><div class="writer-chip fragment fade-out" data-fragment-index="0">Writer<br><span>explores + senses</span></div><p class="fragment loss-label" data-fragment-index="0">WRITER LOST</p><p class="muted">The exploring robot is no longer available.</p></div>
+  <div class="memory-card beacon-card"><p class="card-label">INDEPENDENT MEMORY</p><div class="beacon-row"><span>B01</span><span>B02</span><span>B03</span></div><h3>Beacons remain.</h3><p>Event + guidance + timestamp<br>Persistent records. Relayed advertisements.</p></div>
+  <div class="memory-card rescue-card fragment" data-fragment-index="1"><p class="card-label">MISSION CONTINUES</p><h3>Executor inherits.</h3><p>A gateway brief gives it memories and the last uploaded map before entry.</p><p class="accent">No restart from zero.</p></div>
+ </div>
+ <p class="slide-footer">System concept / implemented in the Writer-loss simulation scenario</p>
+ <aside class="notes">30 seconds. First advance removes the Writer. The beacons stay because their store is independent. Second advance introduces the Executor. Its initial knowledge comes from a brief delivered by the gateway at the entrance, then it learns new advertisements inside. Physical beacons remain planned hardware.</aside>
+</section>
+<section aria-label="Communication architecture">
+ <p class="kicker">02 / SYSTEM ARCHITECTURE</p><h2>One boundary. One path to the outside.</h2>
+ <img class="figure wide" src="../diagrams/architecture.svg" alt="Writer and Executors inside a mine communicate through beacon memory and the Outside Network gateway to the command post">
+ <p class="takeaway">Command post: <strong>WHO + WHAT.</strong> Robot: <strong>HOW.</strong></p>
+ <p class="slide-footer">Telemetry, memories and map pass through the RF mesh / mission briefs return through the gateway</p>
+ <aside class="notes">35 seconds. Explain left to right: Writer explores, the mesh preserves and relays, the gateway receives and translates, and the outside link feeds the command post. The command post chooses capable robots and targets, rather than remote-driving a route. The separate harness injects faults; it is not mission traffic.</aside>
+</section>
+<section aria-label="What each beacon records">
+ <p class="kicker">03 / THE MEMORY UNIT</p><h2>33 bytes. Three essential questions.</h2>
+ <div class="three-principles"><p><span>WHAT</span> Event, severity, confidence</p><p><span>WHERE</span> Position, guidance, chain</p><p><span>WHEN</span> Timestamp and expiry</p></div>
+ <img class="figure frame" src="../diagrams/beacon_frame.svg" alt="33-byte wire frame in implementation order, with what, where and when field groups">
+ <p class="takeaway">A safe-standoff beacon records a reached place and points toward the event.</p>
+ <p class="slide-footer">30-beacon capacity / 4 reserved for events / CRC32 integrity / per-event aging</p>
+ <aside class="notes">30 seconds. Show that the beacon is not only a location marker. Position plus a guidance vector locates the event. Chain links support inherited navigation. Timestamp and TTL make old information explicit. The Writer uses entrance, junction, relay and spacing policies; detected events take priority. Simulated deposition is implemented; the servo dispenser is Phase 2.</aside>
+</section>
+<section aria-label="Radio model and GPS translation">
+ <p class="kicker">04 / FROM THE MINE TO THE WORLD</p><h2>Relay through rock. Translate at the gateway.</h2>
+ <div class="technical-grid"><div><img class="figure" src="../diagrams/radio_model.svg" alt="Simulated packet delivery curves for zero, one and two walls"><h3>RF mesh</h3><p>8 dB modeled loss per wall.<br>Recorded memories arrive in 2–3 hops.</p></div><div><img class="figure" src="../diagrams/coordinate_frames.svg" alt="Map frame to gateway-relative position to ENU to WGS84"><h3>GPS outside</h3><p>The gateway owns the GPS anchor.<br>Underground robots keep local coordinates.</p></div></div>
+ <p class="slide-footer">RF curves are model predictions / field accuracy depends on measured radio, GPS, heading and map error</p>
+ <aside class="notes">30 seconds. The chart comes directly from the software model, not measured RF. Walls shorten a radio link and beacon relays provide alternative paths. At the gateway, subtract its map position, rotate by heading into East/North and convert to WGS84. The displayed decimal precision is not a field-accuracy claim.</aside>
+</section>
+<section aria-label="Recorded robot mission paths">
+ <p class="kicker">05 / INHERITED MISSION EXECUTION</p><h2>Secure the scene. Then assist the victims.</h2>
+ <img class="figure mission" src="../diagrams/mission_maps.svg" alt="Recorded occupancy, memories and retained trails separated by Writer, fire robot and rescue Executor">
+ <div class="role-strip"><p><span class="blue">WRITER</span> Explore + preserve</p><p><span class="red">FIRE ROBOT</span> Extinguish + update</p><p><span class="orange">RESCUE</span> Assist by priority + update</p></div>
+ <p class="slide-footer">5 October spacious-layout snapshot / one gas hazard / both Executor returns recorded / retained trails only</p>
+ <aside class="notes">35 seconds. This is a recorded final snapshot, not an animation pretending to be telemetry. Each panel separates a robot’s retained trail. Both victim records and the fire are resolved, and both Executors report back at the entrance. The robot uses inherited beacon routes and the uploaded map for wall checks and Nav2. Gas remains an active keep-out hazard.</aside>
+</section>
+<section aria-label="Recorded simulation results">
+ <p class="kicker">06 / EVIDENCE</p><h2>Three Writer outcomes. Continued objectives.</h2>
+ <img class="figure results" src="../diagrams/results.svg" alt="Single recorded objective completion times: 219 seconds destroyed, 180 seconds stuck, 317 seconds returned">
+ <div class="evidence-strip"><div><strong>3 / 3</strong><span>Fire + victim memories resolved<br>in each recorded scenario</span></div><div><strong>149</strong><span>Central automated tests passed<br>5 October 2026</span></div><div><strong>2–3</strong><span>Recorded RF hops<br>to the gateway</span></div></div>
+ <p class="slide-footer">Single runs / objective times exclude returns / historical one-gas layouts / source logs in docs/results/</p>
+ <aside class="notes">35 seconds. These times come from the watcher logs: three individual runs, not a statistical benchmark. All have three resolved target memories. The tests check central logic and the headless demo checks information flow, not full physical navigation. Historical recordings use one gas hazard; the current default has two, so we do not claim every configuration is certified.</aside>
+</section>
+<section aria-label="Failures and limitations">
+ <p class="kicker">07 / FAILURE-AWARE DESIGN</p><h2>Make failure visible. Preserve useful knowledge.</h2>
+ <div class="failure-grid"><div class="memory-card"><h3>Writer loss</h3><p>Independent beacon store.<br>Mission handover with available memories.</p></div><div class="memory-card"><h3>Relay loss</h3><p>Alternative mesh routes.<br>One recorded relay removal recovered five dependent routes.</p></div><div class="memory-card"><h3>Link outage</h3><p>Keep the latest state.<br>Forward on recovery and retry commands.</p></div></div>
+ <div class="honesty"><strong>What still needs work</strong><p>Physical sensing and radio measurements. Gateway redundancy. Explicit partial-success status and confirmed write-back. Return-clearance handling.</p></div>
+ <p class="slide-footer">A completion banner alone is not proof: inspect target results, RESOLVED memories and return details</p>
+ <aside class="notes">30 seconds. Explain the recorded failure cases, then acknowledge limitations. The current software can report completion with skipped targets or unconfirmed write-back and before returning home. The report states this explicitly. Modeled sensing, ideal odometry and a single gateway remain boundaries of Phase 1. These limits guide the hardware and software work rather than being hidden.</aside>
+</section>
+<section aria-label="Physical implementation plan">
+ <p class="kicker">08 / THE PHYSICAL PROTOTYPE</p><h2>Keep the logic. Replace the simulated inputs.</h2>
+ <img class="figure roadmap" src="../diagrams/roadmap.svg" alt="Planned hardware milestones from October firmware through December final delivery">
+ <div class="budget"><div><span>REQUIRED PROTOTYPE</span><strong>Writer + Executor</strong><p>Real sensors, dispenser, battery beacons and gateway.</p></div><div><span>PLANNING BUDGET</span><strong>≈ 4,650 DT</strong><p>Two robots with 10% contingency; optional fire robot excluded.</p></div></div>
+ <p class="slide-footer">Final deadline: 1 December 2026 / estimates need supplier quotations / permitted RF band to be confirmed</p>
+ <aside class="notes">35 seconds. The challenge requires two physical robots. Start with beacon firmware and measured radio links, then bases, sensors, dispenser, autonomy, gateway integration and failure trials. Acceptance includes valid CRC frames, through-wall relay delivery, twenty jam-free drops and end-to-end missions. The budget is an estimate, not quotations; the third fire robot is optional.</aside>
+</section>
+<section class="closing" aria-label="Closing and demonstration resources">
+ <p class="kicker">LIVINGMAP / SPATIAL MEMORY FOR EMERGENCY ROBOTS</p><h1>The next robot<br>starts with knowledge.</h1>
+ <p class="lede">Explore → Preserve → Continue → Update</p>
+ <div class="closing-links"><a href="../report/report.pdf">Read the six-page report ↗</a><a href="../results/README.md">Inspect recorded evidence ↗</a><a href="../../instructions.md">Reproduce the simulation ↗</a></div>
+ <p class="slide-footer">If the Writer is lost, the map is not.</p>
+ <aside class="notes">20 seconds. Close on the idea: the environment stores actionable, time-stamped knowledge and the next robot writes its results back. Invite questions on the communication boundary, autonomy, evidence and physical plan. The report, logs and run instructions are supplied with the repository.</aside>
+</section>
+</div></div>
+<script src="vendor/reveal.js"></script><script src="vendor/notes.js"></script>
+<script>
+if (typeof Reveal !== 'undefined') {
+ Reveal.initialize({width:1280,height:720,margin:0.035,minScale:0.15,maxScale:2,hash:true,controls:true,progress:true,center:false,transition:'fade',transitionSpeed:'fast',slideNumber:'c/t',showSlideNumber:'all',pdfSeparateFragments:false,disableLayout:false,plugins:[RevealNotes]});
+} else { document.body.classList.add('static-deck'); }
+</script>
+<noscript><style>.reveal{overflow:auto}.reveal .slides{position:static;width:100%;height:auto;transform:none}.reveal .slides>section{display:block;position:relative;margin-bottom:2rem}</style></noscript>
+</body></html>

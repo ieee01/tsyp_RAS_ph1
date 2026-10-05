@@ -1,0 +1,7 @@
+seed: 73
+latency_ms: 600
+jitter_ms: 80
+packet_loss: 0.02
+bandwidth_bytes_per_sec: 32768
+initially_up: true
+gateway_queue_limit: 1000

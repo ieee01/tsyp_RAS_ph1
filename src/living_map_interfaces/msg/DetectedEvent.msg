@@ -1,0 +1,11 @@
+uint8 NONE=0
+uint8 VICTIM=1
+uint8 GAS_HAZARD=2
+uint8 BLOCKED_PATH=3
+uint8 FIRE=4
+string event_id
+uint8 event_type
+geometry_msgs/PoseStamped pose
+uint8 severity
+float32 confidence
+builtin_interfaces/Time detected_at

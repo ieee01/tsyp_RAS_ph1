@@ -13,7 +13,7 @@ from tf2_ros import Buffer, TransformException, TransformListener
 from living_map_interfaces.msg import RobotStatus
 
 from .battery import Battery
-from .progress import StuckDetector
+from .progress import StuckDetector, yaw_from_quaternion
 
 DRIVING_STATES = {"NAVIGATING", "RETURNING"}
 
@@ -36,6 +36,15 @@ class Writer(Node):
         self.declare_parameter("auto_explore", False)
         self.declare_parameter("stuck_timeout_s", 45.0)
         self.declare_parameter("stuck_min_progress_m", 0.3)
+        # A drive command older than this no longer counts as an order to move
+        # (Nav2 publishes at 10-12 Hz while it drives and goes silent when idle).
+        self.declare_parameter("stuck_cmd_timeout_s", 1.0)
+        # Without odometry newer than this, motion cannot be measured: the
+        # detector then neither accuses nor clears the robot.
+        self.declare_parameter("stuck_odom_timeout_s", 1.0)
+        # Rotation in place counts as obeyed when the heading turns at least this
+        # fraction of the commanded angle (acceleration limits, noise).
+        self.declare_parameter("stuck_min_rotation_ratio", 0.25)
         self.declare_parameter("dying_gasp_s", 3.0)
         self.declare_parameter("battery_start_pct", 100.0)
         self.declare_parameter("home_x", 0.0)
@@ -51,7 +60,11 @@ class Writer(Node):
         self.detector = StuckDetector(
             float(self.get_parameter("stuck_timeout_s").value),
             float(self.get_parameter("stuck_min_progress_m").value),
+            min_rotation_ratio=float(self.get_parameter("stuck_min_rotation_ratio").value),
+            cmd_timeout_s=float(self.get_parameter("stuck_cmd_timeout_s").value),
+            odom_timeout_s=float(self.get_parameter("stuck_odom_timeout_s").value),
         )
+        self.odom_stale_reported = False
         self.failed_at: float | None = None
         self.last_odom_pose: Pose | None = None
         self.tf_buffer = Buffer()
@@ -72,6 +85,9 @@ class Writer(Node):
         self.create_service(Trigger, "writer/fail", self.fail)
         self.create_service(SetBool, "writer/set_stuck", self.set_stuck)
         self.create_subscription(Odometry, "/writer/odom", self.on_odom, 10)
+        # Every drive command (Nav2 controller and behaviours, or the demo
+        # fallback) so stuck detection compares commanded with achieved motion.
+        self.create_subscription(Twist, "/writer/cmd_vel", self.on_cmd_vel, 10)
         self.create_subscription(String, "writer_explorer_state", self.on_explorer_state, qos)
         self.create_timer(0.5, self.tick)
         self.failed_pub.publish(Bool(data=False))
@@ -97,6 +113,7 @@ class Writer(Node):
             return response
         self.enabled = bool(request.data)
         self.sortie_started = self.sortie_started or self.enabled
+        self._sync_detector()
         self.enabled_pub.publish(Bool(data=self.enabled))
         if not self.enabled:
             self.cmd.publish(Twist())
@@ -104,11 +121,36 @@ class Writer(Node):
         response.message = "Writer exploring" if self.enabled else "Writer paused"
         return response
 
+    def _detector_active(self) -> bool:
+        return (self.enabled and not self.failed and not self.stuck
+                and self.explorer_state in DRIVING_STATES)
+
+    def _sync_detector(self) -> bool:
+        """Start or end the stuck detector's navigation period; True while active."""
+        active = self._detector_active()
+        self.detector.set_active(active)
+        return active
+
     def on_odom(self, msg: Odometry) -> None:
         self.last_odom_pose = msg.pose.pose
+        # Physical motion is measured in the continuous odom frame only; the
+        # map pose (which SLAM corrections can shift) is for status and beacons.
+        if self._sync_detector():
+            pose = msg.pose.pose
+            q = pose.orientation
+            self.detector.odometry(self._now_s(), pose.position.x, pose.position.y,
+                                   yaw_from_quaternion(q.x, q.y, q.z, q.w))
+
+    def on_cmd_vel(self, msg: Twist) -> None:
+        # Nav2, the demo fallback and this node's own stop commands share this
+        # topic and cannot be told apart; the detector never attributes or drops
+        # a message (zero commands alone cannot confirm the command stream).
+        if self._sync_detector():
+            self.detector.command(self._now_s(), msg.linear.x, msg.angular.z)
 
     def on_explorer_state(self, msg: String) -> None:
         self.explorer_state = msg.data
+        self._sync_detector()
         if msg.data == "RETURN_FAILED" and not self.stuck:
             self._become_stuck("could not drive back to the entrance")
 
@@ -204,12 +246,16 @@ class Writer(Node):
 
         pose = self.map_pose()
         self._update_battery(now, pose)
-        if pose is not None and not self.failed and not self.stuck:
-            driving = self.enabled and self.explorer_state in DRIVING_STATES
-            if self.detector.update(now, pose.position.x, pose.position.y, driving):
+        if self._sync_detector():
+            stale = self.detector.odom_stale(now)
+            if stale and not self.odom_stale_reported:
+                self.get_logger().warning(
+                    "No fresh /writer/odom: stuck detection paused until odometry returns")
+            self.odom_stale_reported = stale
+            if self.detector.evaluate(now):
                 self._become_stuck(
-                    f"no progress for {self.detector.window_s:.0f} s while "
-                    f"{self.explorer_state.lower()}"
+                    f"commanded motion produced no progress for {self.detector.window_s:.0f} s "
+                    f"while {self.explorer_state.lower()}"
                 )
 
         msg = RobotStatus()
